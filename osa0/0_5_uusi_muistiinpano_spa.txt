@@ -1,0 +1,25 @@
+
+actor käyttäjä
+participant selain
+participant https://fullstack-exampleapp.herokuapp.com as palvelin
+
+käyttäjä->selain: Klikkaa "Save"
+
+note over selain:
+Selain suorittaa onSubmit-tapahtuman käsittelijän,
+joka lisää uuden muistiinpanon DOMiin ja lähettää palvelimelle.
+Selain renderöi päivittyneen DOMin.
+end note
+
+selain-->käyttäjä: Sivun lataus valmis
+
+selain->palvelin: HTTP POST /new_note_spa { "content": "teksti", "date": "..." }
+activate palvelin
+
+note over palvelin:
+Uusi muistiinpano lisätään edellisten perään.
+end note
+
+palvelin-->selain: { "message": "note created" }
+deactivate palvelin
+

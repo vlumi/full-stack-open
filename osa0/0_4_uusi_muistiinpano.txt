@@ -1,0 +1,47 @@
+
+actor käyttäjä
+participant selain
+participant https://fullstack-exampleapp.herokuapp.com as palvelin
+
+käyttäjä->selain: Klikkaa "Save"
+
+selain->palvelin: HTTP POST /new_note { "note": "teksti" }
+activate palvelin
+
+note over palvelin:
+Uusi muistiinpano lisätään edellisten perään.
+end note
+
+palvelin-->selain: Status 302, location /notes
+deactivate palvelin
+
+selain->palvelin: HTTP GET /notes
+activate palvelin
+palvelin-->selain: HTML-koodi
+deactivate palvelin
+
+selain->palvelin: HTTP GET /main.css
+activate palvelin
+palvelin-->selain: main.css
+deactivate palvelin
+
+selain->palvelin: HTTP GET /main.js
+activate palvelin
+palvelin-->selain: main.js
+deactivate palvelin
+
+note over selain:
+Selain suorittaa main.js, joka lataa /data.json
+end note
+
+selain->palvelin: HTTP GET /data.json
+activate palvelin
+palvelin-->selain: [..., { content: "teksti", date: "..." }]
+deactivate palvelin
+
+note over selain:
+Selain suorittaa onReadyStateChange-tapahtuman käsittelijän,
+joka päivittää tiedot DOM:iin, jonka selain renderöi.
+end note
+
+selain-->käyttäjä: Sivun lataus valmis
