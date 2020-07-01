@@ -3,35 +3,39 @@ import axios from "axios";
 import Filter from "./components/Filter";
 import Result from "./components/Result";
 
+const COUNTRY_INFO_URL = "https://restcountries.eu/rest/v2/all";
+
+const filterCountries = (searchString, countryInfo) => {
+  if (searchString.length === 0) {
+    return countryInfo;
+  }
+  const cleanedSearchString = searchString
+    .replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&")
+    .toLowerCase();
+  const partialMatch = countryInfo.filter((country) =>
+    country.name.toLowerCase().match(new RegExp(cleanedSearchString))
+  );
+  if (partialMatch.length > 1) {
+    const exactMatch = partialMatch.filter(
+      (country) => country.name.toLowerCase() === searchString.toLowerCase()
+    );
+    if (exactMatch.length === 1) {
+      return exactMatch;
+    }
+  }
+  return partialMatch;
+};
+
 const App = () => {
   const [countryInfo, setCountryInfo] = useState([]);
   const [searchString, setSearchString] = useState("");
+  const [weatherInfo, setWeatherInfo] = useState({});
 
-  const URL = "https://restcountries.eu/rest/v2/all";
   useEffect(() => {
-    axios.get(URL).then((response) => setCountryInfo(response.data));
+    axios
+      .get(COUNTRY_INFO_URL)
+      .then((response) => setCountryInfo(response.data));
   }, []);
-
-  const filterCountries = (searchString, countryInfo) => {
-    if (searchString.length === 0) {
-      return countryInfo;
-    }
-    const cleanedSearchString = searchString
-      .replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&")
-      .toLowerCase();
-    const partialMatch = countryInfo.filter((country) =>
-      country.name.toLowerCase().match(new RegExp(cleanedSearchString))
-    );
-    if (partialMatch.length > 1) {
-      const exactMatch = partialMatch.filter(
-        (country) => country.name.toLowerCase() === searchString.toLowerCase()
-      );
-      if (exactMatch.length === 1) {
-        return exactMatch;
-      }
-    }
-    return partialMatch;
-  };
 
   const filteredCountryInfo = filterCountries(searchString, countryInfo);
 
@@ -41,6 +45,8 @@ const App = () => {
       <Result
         countryInfo={filteredCountryInfo}
         handleCountryLinkClick={(event) => setSearchString(event.target.value)}
+        weatherInfo={weatherInfo}
+        setWeatherInfo={setWeatherInfo}
       />
     </>
   );
