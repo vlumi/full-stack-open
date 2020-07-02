@@ -1,29 +1,18 @@
 import React from "react";
 
 const AddPerson = ({
-  persons,
-  setPersons,
+  createPerson,
   newName,
   setNewName,
   newNumber,
   setNewNumber,
 }) => {
-  const isDuplicateEntry = (persons, newName) =>
-    persons.map((person) => person.name).includes(newName);
   const handleAddPerson = (event) => {
     event.preventDefault();
-    if (isDuplicateEntry(persons, newName)) {
-      alert(`${newName} is already added to the phonebook`);
-      return;
-    }
-    setPersons(
-      persons.concat({
-        name: newName,
-        number: newNumber,
-      })
-    );
-    setNewName("");
-    setNewNumber("");
+    createPerson({
+      name: newName,
+      number: newNumber,
+    });
   };
   const handleNameChange = (event) => setNewName(event.target.value);
   const handleNumberChange = (event) => setNewNumber(event.target.value);
