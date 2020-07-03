@@ -4,7 +4,7 @@ Full stack version of the phonebook app for the [Full Stack Open](https://fullst
 
 A version running on the internet can be found at:
 
-- http://jp.misaki.fi:3001/
+- https://puhelinluettelo.misaki.fi/
 
 ## Commands
 
