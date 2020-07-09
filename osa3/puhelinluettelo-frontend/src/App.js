@@ -79,9 +79,11 @@ const App = () => {
         setNewNumber("");
         showMessage(`Added ${returnedPerson.name}`);
       })
-      .catch((error) => {
-        console.log("failed", error);
-        showErrorMessage(`Person ${newPerson.name} creation failed.`);
+      .catch((error, x) => {
+        console.log("failed", error.response);
+        showErrorMessage(
+          `Person ${newPerson.name} creation failed: ${error.response.data.error}`
+        );
       });
   };
   const updatePerson = (updatedPerson) => {
@@ -98,8 +100,10 @@ const App = () => {
         showMessage(`Updated ${returnedPerson.name}`);
       })
       .catch((error) => {
-        console.log("failed", error);
-        showErrorMessage(`Person ${updatedPerson.name} update failed.`);
+        console.log("failed", error.response.data);
+        showErrorMessage(
+          `Person ${updatedPerson.name} update failed: ${error.response.data.error}`
+        );
       });
   };
   const deletePerson = (targetPerson) => {
