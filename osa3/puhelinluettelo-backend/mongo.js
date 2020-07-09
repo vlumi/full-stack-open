@@ -19,7 +19,7 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model("Person", personSchema);
 
-if (input.length == 2) {
+if (input.length === 2) {
   const generateId = () => Math.floor(Math.random() * 1000000000);
   const [name, number] = input;
   console.log("Creating person", name, number);
@@ -29,7 +29,7 @@ if (input.length == 2) {
     id: generateId(),
   });
 
-  person.save().then((response) => {
+  person.save().then(() => {
     console.log("person saved!");
     mongoose.connection.close();
   });

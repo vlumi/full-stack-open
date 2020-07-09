@@ -3,7 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 
-morgan.token("body", function (req, res) {
+morgan.token("body", function (req) {
   return JSON.stringify(req.body);
 });
 
@@ -71,11 +71,11 @@ app.put("/api/persons/:id", (req, res, next) => {
 });
 app.delete("/api/persons/:id", (req, res, next) => {
   Person.findByIdAndDelete(req.params.id)
-    .then((result) => res.status(204).end())
+    .then(() => res.status(204).end())
     .catch((error) => next(error));
 });
 
-const unknownEndpoint = (req, res, next) => {
+const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: "unknown endpoint" });
 };
 app.use(unknownEndpoint);

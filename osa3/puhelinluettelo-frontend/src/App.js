@@ -79,7 +79,7 @@ const App = () => {
         setNewNumber("");
         showMessage(`Added ${returnedPerson.name}`);
       })
-      .catch((error, x) => {
+      .catch((error) => {
         console.log("failed", error.response);
         showErrorMessage(
           `Person ${newPerson.name} creation failed: ${error.response.data.error}`
@@ -112,7 +112,7 @@ const App = () => {
     }
     personService
       .remove(targetPerson.id)
-      .then((response) => {
+      .then(() => {
         setPersons(persons.filter((person) => person.id !== targetPerson.id));
         showMessage(`Deleted ${targetPerson.name}`);
       })
@@ -126,8 +126,8 @@ const App = () => {
     filterName.length === 0
       ? persons
       : persons.filter((person) =>
-          person.name.toLowerCase().match(new RegExp(filterName))
-        );
+        person.name.toLowerCase().match(new RegExp(filterName))
+      );
 
   return (
     <div>

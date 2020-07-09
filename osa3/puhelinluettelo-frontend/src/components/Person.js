@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Person = ({ person, deletePerson }) => {
   return (
@@ -7,6 +8,10 @@ const Person = ({ person, deletePerson }) => {
       <button onClick={() => deletePerson(person)}>Delete</button>
     </div>
   );
+};
+Person.propTypes = {
+  person: PropTypes.object,
+  deletePerson: PropTypes.func,
 };
 
 export default Person;

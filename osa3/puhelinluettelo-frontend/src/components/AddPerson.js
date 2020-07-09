@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const AddPerson = ({
   createPerson,
@@ -32,6 +33,13 @@ const AddPerson = ({
       </form>
     </>
   );
+};
+AddPerson.propTypes = {
+  createPerson: PropTypes.func,
+  newName: PropTypes.string,
+  setNewName: PropTypes.func,
+  newNumber: PropTypes.string,
+  setNewNumber: PropTypes.func,
 };
 
 export default AddPerson;
