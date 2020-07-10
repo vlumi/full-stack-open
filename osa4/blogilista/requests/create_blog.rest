@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+Content-type: application/json
+
+{
+    "title": "Joku blogi",
+    "author": "Matti Meikäläinen",
+    "url": "https://google.com",
+    "likes": 42
+}
