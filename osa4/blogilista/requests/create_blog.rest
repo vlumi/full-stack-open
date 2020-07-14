@@ -1,9 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZvbyIsImlkIjoiNWYwZDYzMjg5NGI2NzE3OWUwMmEyOWYxIiwiaWF0IjoxNTk0NzEyODg2fQ.Uj2a5GZoqhuaJy42vfzJhrbesDyGX5eQLDNO80i36qw
 
 {
     "title": "Joku blogi 2",
-    "author": "Matti Meikäläinen?",
+    "author": "Matti Meikäläinen",
     "url": "https://google.com",
     "likes": 42
 }
