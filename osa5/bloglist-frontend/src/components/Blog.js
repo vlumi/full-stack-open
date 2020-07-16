@@ -1,10 +1,26 @@
 import React from "react";
 
-const Blog = ({ blog, removeBlog }) => (
-  <div>
-    {blog.title} {blog.author}{" "}
-    <button onClick={() => removeBlog(blog)}>Remove</button>
-  </div>
-);
+import BlogDetails from "./BlogDetails";
+
+const Blog = ({ blog, likeBlog, removeBlog }) => {
+  const [visible, setVisible] = React.useState(false);
+
+  const hideWhenVisible = { display: visible ? "none" : "" };
+  const showWhenVisible = { display: visible ? "" : "none" };
+
+  const toggle = () => setVisible(!visible);
+
+  return (
+    <div className="blog">
+      <div style={hideWhenVisible}>
+        {blog.title} by {blog.author} <button onClick={toggle}>Show</button>
+      </div>
+      <div style={showWhenVisible}>
+        {blog.title} by {blog.author} <button onClick={toggle}>Hide</button>
+        <BlogDetails blog={blog} likeBlog={likeBlog} removeBlog={removeBlog} />
+      </div>
+    </div>
+  );
+};
 
 export default Blog;

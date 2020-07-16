@@ -2,11 +2,18 @@ import React from "react";
 
 import Blog from "./Blog";
 
-const Blogs = ({ blogs, removeBlog }) => (
+const Blogs = ({ blogs, likeBlog, removeBlog }) => (
   <>
-    {blogs.map((blog) => (
-      <Blog key={blog.id} removeBlog={removeBlog} blog={blog} />
-    ))}
+    {blogs
+      .sort((a, b) => b.likes - a.likes)
+      .map((blog) => (
+        <Blog
+          key={blog.id}
+          likeBlog={likeBlog}
+          removeBlog={removeBlog}
+          blog={blog}
+        />
+      ))}
   </>
 );
 

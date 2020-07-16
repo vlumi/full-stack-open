@@ -1,9 +1,13 @@
 import React from "react";
 
-const Login = ({ login, username, setUsername, password, setPassword }) => {
+const Login = ({ login, loginVisible }) => {
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
   const handleLogin = (event) => {
     event.preventDefault();
-    login();
+    login(username, password);
+    setPassword("");
   };
 
   return (

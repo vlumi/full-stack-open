@@ -1,18 +1,13 @@
 import React from "react";
 
-const AddBlog = ({
-  addBlog,
-  title,
-  setTitle,
-  author,
-  setAuthor,
-  url,
-  setUrl,
-}) => {
+const AddBlog = ({ addBlog }) => {
+  const [title, setTitle] = React.useState("");
+  const [author, setAuthor] = React.useState("");
+  const [url, setUrl] = React.useState("");
+
   const handleAddBlog = (event) => {
-    console.log("here");
     event.preventDefault();
-    addBlog();
+    addBlog(title, author, url);
   };
 
   return (
