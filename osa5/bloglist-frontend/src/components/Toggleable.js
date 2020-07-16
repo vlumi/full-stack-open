@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Toggleable = React.forwardRef((props, ref) => {
   const [visible, setVisible] = React.useState(props.visibleDefault || false);
@@ -25,5 +26,10 @@ const Toggleable = React.forwardRef((props, ref) => {
     </>
   );
 });
-
+Toggleable.displayName = "Toggleable";
+Toggleable.propTypes = {
+  defaultBody: PropTypes.string,
+  showLabel: PropTypes.string,
+  hideLabel: PropTypes.string,
+};
 export default Toggleable;

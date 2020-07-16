@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const BlogDetails = ({ blog, likeBlog, removeBlog }) => {
   const like = () => likeBlog({ ...blog, likes: blog.likes + 1 });
@@ -13,5 +14,9 @@ const BlogDetails = ({ blog, likeBlog, removeBlog }) => {
     </>
   );
 };
-
+BlogDetails.propTypes = {
+  blog: PropTypes.object.isRequired,
+  likeBlog: PropTypes.func.isRequired,
+  removeBlog: PropTypes.func.isRequired,
+};
 export default BlogDetails;

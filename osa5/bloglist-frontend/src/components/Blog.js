@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import BlogDetails from "./BlogDetails";
 
@@ -22,5 +23,9 @@ const Blog = ({ blog, likeBlog, removeBlog }) => {
     </div>
   );
 };
-
+Blog.propTypes = {
+  blog: PropTypes.object.isRequired,
+  likeBlog: PropTypes.func.isRequired,
+  removeBlog: PropTypes.func.isRequired,
+};
 export default Blog;

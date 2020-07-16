@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Login = ({ login, loginVisible }) => {
+const Login = ({ login }) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -36,5 +37,7 @@ const Login = ({ login, loginVisible }) => {
     </>
   );
 };
-
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+};
 export default Login;

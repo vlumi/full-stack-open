@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Logout = ({ user, logout }) => {
   const handleLogout = (event) => {
@@ -18,5 +19,8 @@ const Logout = ({ user, logout }) => {
     </>
   );
 };
-
+Logout.propTypes = {
+  user: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
+};
 export default Logout;
